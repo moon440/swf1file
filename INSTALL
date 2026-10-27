@@ -1,0 +1,21 @@
+INSTALL
+=====
+
+Requirements: node 18+ (any build with fetch). No native modules,
+no build step, no npm dependencies. That is the point.
+
+    1. node scripts/get-ruffle.mjs
+       Downloads the current ruffle selfhosted web release into
+       vendor/ruffle/ (MIT/Apache licensed, unmodified).
+
+    2. node src/build.mjs yourgame.swf
+       Writes yourgame.html next to the swf. One file. Copy it to a
+       USB stick, email it to yourself, open it from file://.
+
+Options:
+    -o NAME.html   output name (default: <input>.html)
+    --baseline     embed only the non-SIMD wasm (smaller, slower)
+
+Tested: chrome/edge (file:// + http), firefox, ruffle nightly
+2026-10-26. Safari: untested, patches welcome, the fetch shim should
+just work.

@@ -1,0 +1,8 @@
+2026-10-26  moon44  <moon44@users.noreply.github.com>
+
+	* src/build.mjs: the packer. base64 payloads + fetch shim +
+	inlined ruffle -> one html.
+	* scripts/get-ruffle.mjs: vendor the ruffle selfhosted release.
+	* tests/verify.mjs: build a toy swf against a fake vendor, check
+	the output carries everything and calls nobody.
+	* README, INSTALL, NEWS, COPYING: house rules.

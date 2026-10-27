@@ -1,0 +1,8 @@
+NEWS
+====
+
+0.1.0 (2026-10-26)
+    First release. Born from putting Super Smash Flash (2006) back on
+    the web as a single double-clickable html file. Fetch shim trick:
+    ruffle asks for its wasm by URL, we answer from embedded bytes.
+    No ruffle.js patching, no server, no sidecar files.

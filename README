@@ -1,0 +1,46 @@
+swf1file
+========
+
+Turn any Flash .swf into ONE html file. No server, no network, no
+sidecar files. Double-click, play. Works from file:// in every modern
+browser that runs WebAssembly.
+
+    src/build.mjs          the packer: swf + ruffle -> one .html
+    scripts/get-ruffle.mjs vendor the ruffle core (MIT/Apache)
+    tests/verify.mjs       build a toy swf, check the output
+
+How it works
+------------
+
+Ruffle loads its wasm core by URL. From file:// that URL does not
+resolve, so a small fetch shim answers the request from bytes embedded
+in the page itself:
+
+    the swf        base64 -> Blob URL -> player.load()
+    ruffle.js      inlined verbatim
+    core wasm x2   SIMD build + baseline build, base64 -> Blob
+    fetch shim     intercepts "./ruffle_web*.wasm", serves the blobs
+
+No patching of ruffle.js. Nothing on disk except the html you ship.
+
+Usage
+-----
+
+    node scripts/get-ruffle.mjs        # once, fetches ruffle release
+    node src/build.mjs game.swf        # -> game.html
+
+See INSTALL for details.
+
+Not a piracy kit
+----------------
+
+This tool ships NO games. You supply the swf; you own the
+consequences. Nintendo and McLeodGaming did not bless anything here.
+Classic Flash games are abandonware in practice and copyrighted in
+law; keep your output personal.
+
+Author
+------
+
+moon44. AGPL-3.0-only, see COPYING. Ruffle is (c) its contributors,
+MIT OR Apache-2.0, see LICENSES/.
